@@ -26,6 +26,6 @@ jobs:
         API_KEY: ${{ secrets.API_KEY }}
       run: |
         # Crear un archivo .env.js para inyectar la variable de entorno API_KEY en el código
-        echo "window.API_KEY='$API_KEY';" > .env.js
+         echo "API_KEY: $API_KEY"
         # Ahora puedes utilizar la variable API_KEY en tu código
         cat .env.js
