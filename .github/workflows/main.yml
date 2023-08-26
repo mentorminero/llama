@@ -1,0 +1,31 @@
+name: Desplegar mi aplicación
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  despliegue:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del Código
+      uses: actions/checkout@v2
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Instalar Dependencias
+      run: npm install
+
+    - name: Ejecutar mi Aplicación
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+      run: |
+        # Crear un archivo .env.js para inyectar la variable de entorno API_KEY en el código
+        echo "window.API_KEY='$API_KEY';" > .env.js
+        # Ahora puedes utilizar la variable API_KEY en tu código
+        cat .env.js
