@@ -1,19 +1,17 @@
-name: Deploy My Application
-
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  deployment:
+  display-secret:
+    name: Display Secret Variable
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
 
-    - name: Set Environment Variable
-      run: echo "API_KEY=${{vars.API_KEY }}" >> $GITHUB_ENV
+      - name: Use Secret Variable
+        run: |
+          echo "La variable secreta es: ${{ secrets.VAR_SECRETA }}"
+
 
   
